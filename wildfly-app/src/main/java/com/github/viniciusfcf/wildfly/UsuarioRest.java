@@ -103,7 +103,7 @@ public class UsuarioRest {
     
     @GET
     @Path("/avaliar")
-    public Response avaliar(@QueryParam("nome") @NotBlank String nome) {
+    public Response avaliar(@QueryParam("nome") @NotBlank String nome) throws Exception {
         Avaliacao avaliacao = service.avaliar(nome);
 		return Response.ok(avaliacao).build();
     }

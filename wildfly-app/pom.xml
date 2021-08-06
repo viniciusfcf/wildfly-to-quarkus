@@ -15,7 +15,7 @@
     <properties>
 	    <maven.compiler.target>11</maven.compiler.target>
 	    <maven.compiler.source>11</maven.compiler.source>
-        <version.server.bom>24.0.0.Final</version.server.bom>
+        <version.server.bom>24.0.1.Final</version.server.bom>
         <version.microprofile.bom>24.0.0.Final</version.microprofile.bom>
         <version.com.nimbusds.jose.jwt>5.4</version.com.nimbusds.jose.jwt>
     </properties>
@@ -68,6 +68,22 @@
 		    <scope>provided</scope>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/jakarta.jms/jakarta.jms-api -->
+		<dependency>
+		    <groupId>jakarta.jms</groupId>
+		    <artifactId>jakarta.jms-api</artifactId>
+		    <version>2.0.3</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-client -->
+		<dependency>
+		    <groupId>org.apache.activemq</groupId>
+		    <artifactId>activemq-client</artifactId>
+		    <version>5.16.2</version>
+		</dependency>
+
+
 
         <dependency>
             <groupId>com.nimbusds</groupId>

@@ -25,7 +25,7 @@ public class UsuarioService {
         throw new Exception("Failed logging in org.jboss.user with name '" + username + "': unknown username or wrong password");
     }
 
-	public Avaliacao avaliar(String nome) {
+	public Avaliacao avaliar(String nome) throws Exception {
 		return filaService.avaliar(nome);
 	}
 }

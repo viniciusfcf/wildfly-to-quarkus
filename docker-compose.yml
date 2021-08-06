@@ -1,8 +1,8 @@
 version: "3.7"
 services:
   artemis:
-    container_name: artemis_ifood
-    image: vromero/activemq-artemis:2.11.0
+    container_name: artemis
+    image: vromero/activemq-artemis:2.16.0-alpine
     ports:
      - 8161:8161
      - 61616:61616
