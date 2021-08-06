@@ -10,6 +10,7 @@ import javax.jms.Destination;
 import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSProducer;
+import javax.jms.Message;
 import javax.jms.Queue;
 
 
@@ -39,6 +40,10 @@ public class FilaService {
 		Avaliacao avaliacao = new Avaliacao();
 		avaliacao.dataCriacaoFilaService = this.dataCriacao;
 		avaliacao.nome = nome;
+		
+		Message message = context.createConsumer(destination).receive();
+		avaliacao.messageID = message.getJMSMessageID();
+				
 		return avaliacao;
 	}
 	

@@ -6,5 +6,6 @@ public class Avaliacao {
 
 	public LocalDateTime dataCriacaoFilaService;
 	public String nome;
+	public String messageID;
 	
 }

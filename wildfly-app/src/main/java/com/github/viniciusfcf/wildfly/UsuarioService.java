@@ -12,7 +12,8 @@ public class UsuarioService {
 	@Inject
 	private FilaService filaService;
 
-    private static final Map<String, Usuario> USER_DB = new HashMap<String, Usuario>() {{
+    @SuppressWarnings("serial")
+	private static final Map<String, Usuario> USER_DB = new HashMap<String, Usuario>() {{
         put("customer", new Usuario("customer", "customerpw", Roles.CUSTOMER));
         put("admin", new Usuario("admin", "adminpw", Roles.ADMIN));
     }};
