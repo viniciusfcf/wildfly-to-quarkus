@@ -4,7 +4,9 @@ import java.security.Principal;
 import java.text.ParseException;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.validation.constraints.NotBlank;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -12,6 +14,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -24,15 +27,15 @@ import com.nimbusds.jwt.JWTParser;
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class TestRest {
+public class UsuarioRest {
 
-    private static final Logger log = Logger.getLogger(TestRest.class.getName());
+    private static final Logger log = Logger.getLogger(UsuarioRest.class.getName());
 
     @Inject
     JwtManager jwtManager;
 
-//    @EJB
-    UserService service;
+    @EJB
+    UsuarioService service;
 
     @Context
     private SecurityContext securityContext;
@@ -78,7 +81,7 @@ public class TestRest {
     public Response postJWT(@FormParam("username") String username, @FormParam("password") String password) {
         log.info("Authenticating " + username);
         try {
-            User user = service.authenticate(username, password);
+            Usuario user = service.authenticate(username, password);
             if (user != null) {
                 if (user.getName() != null) {
                     log.info("Generating JWT for org.jboss.user " + user.getName());
@@ -94,7 +97,14 @@ public class TestRest {
 
     private String sayHello() {
         Principal userPrincipal = securityContext.getUserPrincipal();
-        String principalName = userPrincipal == null ? "anonymous" : userPrincipal.getName();
+        String principalName = userPrincipal == null ? "anônimo" : userPrincipal.getName();
         return "\"Oi " + principalName + "!\"";
+    }
+    
+    @GET
+    @Path("/avaliar")
+    public Response avaliar(@QueryParam("nome") @NotBlank String nome) {
+        Avaliacao avaliacao = service.avaliar(nome);
+		return Response.ok(avaliacao).build();
     }
 }

@@ -1,6 +1,7 @@
 package com.github.viniciusfcf.wildfly;
 
 public class Jwt {
+	
     private String token;
 
     public Jwt(String token) {

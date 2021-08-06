@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  artemis:
+    container_name: artemis_ifood
+    image: vromero/activemq-artemis:2.11.0
+    ports:
+     - 8161:8161
+     - 61616:61616
+     - 5672:5672
+    environment: 
+      ARTEMIS_USERNAME: admin
+      ARTEMIS_PASSWORD: admin
+      

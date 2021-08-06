@@ -1,12 +1,12 @@
 package com.github.viniciusfcf.wildfly;
 
-public class User {
+public class Usuario {
 
     private String name;
     private String password;
     private String[] roles;
 
-    User(String name, String password, String... roles) {
+    Usuario(String name, String password, String... roles) {
         this.name = name;
         this.password = password;
         this.roles = roles;

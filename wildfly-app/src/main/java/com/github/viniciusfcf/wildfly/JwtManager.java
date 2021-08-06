@@ -21,6 +21,7 @@ import com.nimbusds.jose.crypto.RSASSASigner;
 
 @ApplicationScoped
 public class JwtManager {
+	
     static {
         FileInputStream fis = null;
         char[] password = "secret".toCharArray();
