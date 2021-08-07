@@ -107,4 +107,12 @@ public class UsuarioRest {
         Avaliacao avaliacao = service.avaliar(nome);
 		return Response.ok(avaliacao).build();
     }
+    @GET
+    @Path("/xml/avaliar")
+    @Produces(MediaType.APPLICATION_XML)
+    public Response avaliarXml(@QueryParam("nome") @NotBlank String nome) throws Exception {
+        Avaliacao avaliacao = service.avaliar(nome);
+		return Response.ok(avaliacao).build();
+    }
+    
 }

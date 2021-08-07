@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.jms.Destination;
 import javax.jms.JMSConnectionFactory;
+import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
 import javax.jms.JMSProducer;
 import javax.jms.Message;
@@ -38,12 +39,17 @@ public class FilaService {
 		JMSProducer createProducer = context.createProducer();
 		createProducer.send(destination, "Nome: "+nome);
 		Avaliacao avaliacao = new Avaliacao();
-		avaliacao.dataCriacaoFilaService = this.dataCriacao;
+		avaliacao.dataCriacaoFilaService = this.dataCriacao.toString();
 		avaliacao.nome = nome;
 		
-		Message message = context.createConsumer(destination).receive();
-		avaliacao.messageID = message.getJMSMessageID();
-				
+		try(JMSConsumer createConsumer = context.createConsumer(destination);) {
+
+			Message message = createConsumer.receive(5000);
+			if(message != null) {
+				avaliacao.messageID = message.getJMSMessageID();
+			}
+					
+		}
 		return avaliacao;
 	}
 	

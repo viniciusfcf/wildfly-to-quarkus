@@ -83,7 +83,13 @@
 		    <version>5.16.2</version>
 		</dependency>
 
-
+		<!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
+		<dependency>
+		    <groupId>jakarta.xml.bind</groupId>
+		    <artifactId>jakarta.xml.bind-api</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
+				
 
         <dependency>
             <groupId>com.nimbusds</groupId>
