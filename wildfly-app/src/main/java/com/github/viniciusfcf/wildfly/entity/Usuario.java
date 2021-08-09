@@ -1,4 +1,4 @@
-package com.github.viniciusfcf.wildfly;
+package com.github.viniciusfcf.wildfly.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

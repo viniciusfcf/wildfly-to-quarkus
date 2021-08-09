@@ -14,6 +14,8 @@ import javax.jms.JMSProducer;
 import javax.jms.Message;
 import javax.jms.Queue;
 
+import com.github.viniciusfcf.wildfly.entity.Avaliacao;
+
 
 @RequestScoped
 public class FilaService {

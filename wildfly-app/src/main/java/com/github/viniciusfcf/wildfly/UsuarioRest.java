@@ -2,10 +2,12 @@ package com.github.viniciusfcf.wildfly;
 
 import java.security.Principal;
 import java.text.ParseException;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotBlank;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -21,6 +23,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.SecurityContext;
 
+import com.github.viniciusfcf.wildfly.entity.Avaliacao;
+import com.github.viniciusfcf.wildfly.entity.Evento;
+import com.github.viniciusfcf.wildfly.entity.Usuario;
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
 
@@ -38,7 +43,7 @@ public class UsuarioRest {
 
     //EJB
     @EJB
-    private UsuarioService service;
+    private UsuarioServiceEJB service;
 
     //Modo comum em um Servidor de aplicação.
     @Context
@@ -127,4 +132,15 @@ public class UsuarioRest {
     	return Response.ok(service.buscarTodos()).build();
     }
     
+    @GET
+    @Path("jta")
+    public List<Evento> testeRollback(@QueryParam("newTransaction") boolean newTransaction) {
+    	return service.testeRollback(newTransaction);
+    }
+    
+    @GET
+    @Path("/eventos")
+    public List<Evento> eventos() {
+    	return service.buscarTodosEventos();
+    }
 }
