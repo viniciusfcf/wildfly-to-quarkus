@@ -24,23 +24,25 @@ import javax.ws.rs.core.SecurityContext;
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
 
-@Path("/")
+//JAX-RS
+@Path("/usuarios")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UsuarioRest {
 
     private static final Logger log = Logger.getLogger(UsuarioRest.class.getName());
 
+    //CDI
     @Inject
-    JwtManager jwtManager;
+    private JwtManager jwtManager;
 
+    //EJB
     @EJB
-    UsuarioService service;
+    private UsuarioService service;
 
+    //Modo comum em um Servidor de aplicação.
     @Context
     private SecurityContext securityContext;
-
-    //Security constraints are defined in web.xml
 
     @GET
     @Path("/customer")
@@ -101,18 +103,28 @@ public class UsuarioRest {
         return "\"Oi " + principalName + "!\"";
     }
     
+    //JSONB
     @GET
     @Path("/avaliar")
-    public Response avaliar(@QueryParam("nome") @NotBlank String nome) throws Exception {
+    public Response avaliar(@QueryParam("nome") 
+    	//BEAN VALIDATION
+    	@NotBlank String nome) throws Exception {
         Avaliacao avaliacao = service.avaliar(nome);
 		return Response.ok(avaliacao).build();
     }
+    
+    //JAXB
     @GET
     @Path("/xml/avaliar")
     @Produces(MediaType.APPLICATION_XML)
     public Response avaliarXml(@QueryParam("nome") @NotBlank String nome) throws Exception {
         Avaliacao avaliacao = service.avaliar(nome);
 		return Response.ok(avaliacao).build();
+    }
+    
+    @GET
+    public Response buscarTodos() {
+    	return Response.ok(service.buscarTodos()).build();
     }
     
 }

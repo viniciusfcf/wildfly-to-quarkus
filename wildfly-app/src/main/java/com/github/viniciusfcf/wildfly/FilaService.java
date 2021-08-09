@@ -20,6 +20,7 @@ public class FilaService {
 
 	private LocalDateTime dataCriacao;
 	
+	//JMS
 	@Inject
     @JMSConnectionFactory("java:/RemoteJmsXA")
     private JMSContext context;

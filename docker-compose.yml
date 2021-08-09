@@ -10,4 +10,11 @@ services:
     environment: 
       ARTEMIS_USERNAME: admin
       ARTEMIS_PASSWORD: admin
-      
+  postgres:
+    container_name: postgres
+    image: postgres:12.2
+    ports:
+     - 5432:5432
+    environment: 
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senhaDificil

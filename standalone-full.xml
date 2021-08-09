@@ -162,6 +162,21 @@
                         <password>sa</password>
                     </security>
                 </datasource>
+                <datasource jndi-name="java:/PostgresDS" pool-name="PostgresDS">
+                    <connection-url>jdbc:postgresql://localhost:5432/postgres</connection-url>
+                    <driver-class>org.postgresql.Driver</driver-class>
+                    <driver>postgresql-42.2.23.jar</driver>
+                    <security>
+                        <user-name>usuario</user-name>
+                        <password>senhaDificil</password>
+                    </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+                        <validate-on-match>true</validate-on-match>
+                        <background-validation>false</background-validation>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+                    </validation>
+                </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
@@ -617,4 +632,9 @@
             <remote-destination host="127.0.0.1" port="61616"/>
         </outbound-socket-binding>
     </socket-binding-group>
+    <deployments>
+        <deployment name="postgresql-42.2.23.jar" runtime-name="postgresql-42.2.23.jar">
+            <content sha1="9cb217a3d5b640567ed7c6e8c11f389613c81c4d"/>
+        </deployment>
+    </deployments>
 </server>
