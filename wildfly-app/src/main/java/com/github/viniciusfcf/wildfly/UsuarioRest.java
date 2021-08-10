@@ -1,5 +1,6 @@
 package com.github.viniciusfcf.wildfly;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.text.ParseException;
 import java.util.List;
@@ -7,7 +8,8 @@ import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.validation.constraints.NotBlank;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -143,4 +145,16 @@ public class UsuarioRest {
     public List<Evento> eventos() {
     	return service.buscarTodosEventos();
     }
+
+    @GET
+    @Path("/json-p")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String jsonP() {
+        JsonObject json = Json.createObjectBuilder()
+        .add("nome", "Vinicius Ferraz")
+        .add("idade", BigDecimal.valueOf(36)).build();
+    	return "JSON gerado: "+json.toString();
+    }
+
+    
 }

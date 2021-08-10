@@ -162,7 +162,7 @@
                         <password>sa</password>
                     </security>
                 </datasource>
-                <datasource jndi-name="java:/PostgresDS" pool-name="PostgresDS">
+                <datasource jta="true" jndi-name="java:/PostgresDS" pool-name="PostgresDS" use-ccm="false">
                     <connection-url>jdbc:postgresql://localhost:5432/postgres</connection-url>
                     <driver-class>org.postgresql.Driver</driver-class>
                     <driver>postgresql-42.2.23.jar</driver>
