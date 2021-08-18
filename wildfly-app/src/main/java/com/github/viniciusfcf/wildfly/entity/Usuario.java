@@ -14,16 +14,14 @@ public class Usuario {
 
     private String name;
     private String password;
-    private String[] roles;
     
     public Usuario() {
     	this(null, null);
     }
-
-    public Usuario(String name, String password, String... roles) {
+    
+    public Usuario(String name, String password) {
         this.name = name;
         this.password = password;
-        this.roles = roles;
     }
 
     public String getName() {
@@ -32,9 +30,5 @@ public class Usuario {
 
     public String getPassword() {
         return password;
-    }
-
-    public String[] getRoles() {
-        return roles;
     }
 }
