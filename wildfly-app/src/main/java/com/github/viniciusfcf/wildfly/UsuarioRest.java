@@ -57,13 +57,6 @@ public class UsuarioRest {
     	return Response.ok(service.buscarTodos()).build();
     }
     
-    //JPA
-    //Buscando todos os eventos
-    @GET
-    @Path("/eventos")
-    public List<Evento> eventos() {
-    	return service.buscarTodosEventos();
-    }
 
     //JSON-P
     @GET
@@ -76,10 +69,19 @@ public class UsuarioRest {
     	return "JSON gerado: "+json.toString();
     }
 
+    //JTA
     @GET
     @Path("jta")
     public List<Evento> testeRollback(@QueryParam("newTransaction") boolean newTransaction) {
     	return service.testeRollback(newTransaction);
+    }
+    
+    //JPA
+    //Buscando todos os eventos
+    @GET
+    @Path("/eventos")
+    public List<Evento> eventos() {
+    	return service.buscarTodosEventos();
     }
 
     
